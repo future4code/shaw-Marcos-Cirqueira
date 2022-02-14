@@ -1,0 +1,10 @@
+1 - Sobrenatural
+2 - Invocação do mal
+3 - Capitão América
+4 - Vingadores
+5 - django livre
+6 - Dragon ball
+7 - Um lugar silencioso
+8 - John Wick
+9 - extraordinário
+10 - Transformers 
