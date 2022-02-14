@@ -1,0 +1,10 @@
+1 - Sushi
+2 - Fricassê
+3 - Strogonoff carne/frango
+4 - Camarão
+5 - Feijão tropeiro
+6 - Açaí
+7 - Lasanha
+8 - Arroz Carreteiro
+9 - Galinhada
+10 - Costela Cozida na Cebola
