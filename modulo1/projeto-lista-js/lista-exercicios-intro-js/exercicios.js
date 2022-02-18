@@ -59,14 +59,14 @@
 
 
 // // // EXERCÍCIO 05
-function imprimeTresCoresFavoritas() {
-  let cor1 = prompt("Digite três cores favoritas"); 
-  let cor2 = prompt("Digite três cores favoritas"); 
-  let cor3 = prompt("Digite três cores favoritas"); 
-console.log ([cor1, cor2, cor3]);
+// function imprimeTresCoresFavoritas() {
+//   let cor1 = prompt("Digite três cores favoritas"); 
+//   let cor2 = prompt("Digite três cores favoritas"); 
+//   let cor3 = prompt("Digite três cores favoritas"); 
+// console.log ([cor1, cor2, cor3]);
   
 
-}
+// }
 
 // // EXERCÍCIO 06
 // function retornaStringEmMaiuscula(string) {
@@ -104,11 +104,18 @@ console.log ([cor1, cor2, cor3]);
 // // EXERCÍCIO 11
 // function trocaPrimeiroEUltimo(array) {
 
-//   array.push(array.splice(2,1)[2]);
+//   const primeiroItemArrayOriginal = array[0];
+//   const ultimoItemArrayOriginal = array[array.length -1];
 
-//   return array.reverse();
 
+// const arrayAlterado = array;
+
+// arrayAlterado[0] = ultimoItemArrayOriginal
+// arrayAlterado[arrayAlterado.length -1] = primeiroItemArrayOriginal;
+
+// return arrayAlterado;
 // }
+ 
 
 // // EXERCÍCIO 12
 // function checaIgualdadeDesconsiderandoCase(string1, string2) {
@@ -120,15 +127,7 @@ console.log ([cor1, cor2, cor3]);
 
 // // EXERCÍCIO 13
 // function checaRenovacaoRG() {
-//   const anoAtual = prompt("Digite o Ano Atual")
-//   const anoDeNascimento = prompt("Digite o ano de seu nascimento")
-//   const anoDaCarteira = prompt("Digite o ano em que sua identidade foi emitida")
 
-//   const idade = 20;
-  
-//   const maior20 = idade >= 20;
-//   const maior202 = idade > 20 <= 50
-//   const maior50 = idade > 50
 
 // }
 
