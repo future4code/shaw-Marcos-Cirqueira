@@ -1,0 +1,16 @@
+button{
+    color:blueviolet;
+}
+label{
+    color: white;
+}
+body{
+    background-image: url(../template-loja/img/fundo.png);
+    color: white;
+    background-size: 200%;
+    background-repeat: no-repeat;   
+    
+}
+a{
+    color:gray;
+}
