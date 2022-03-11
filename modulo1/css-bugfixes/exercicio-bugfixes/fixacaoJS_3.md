@@ -1,4 +1,4 @@
-function calculaNota(ex, p1, p2) {
+```function calculaNota(ex, p1, p2) {
    let calculaMedia = (ex*1 + p1*2 +p2*3)/6
   
   if(calculaMedia >= 9){
