@@ -5,6 +5,7 @@
 // const bool3 = !bool2
 
 // let resultado = bool1 && bool2
+
 // console.log("a. ", resultado)
 // // Resultado e Falso, pois V e F = F
 
@@ -19,6 +20,19 @@
 // console.log("d. ", typeof resultado)
 // //  Variável booleana!
 
+// console.log("a. ", resultado) 
+// // Resultado será Falso, pois V e F = F
+
+// resultado = bool1 && bool2 && bool3 
+// console.log("b. ", resultado) 
+// // Resultado será Falso, pois F e V = F
+
+// resultado = !resultado && (bool1 || bool2) 
+// console.log("c. ", resultado)
+// // Resultado será Verdadeiro 
+// console.log("d. ", typeof resultado)
+
+
 
 // let primeiroNumero = Number (prompt("Digite um numero!"))
 // let segundoNumero = Number (prompt("Digite outro numero!"))
@@ -26,6 +40,7 @@
 // const soma = primeiroNumero + segundoNumero
 
 // console.log(soma)
+
 // // o resultado estava concatenando, assim convertir String para Número, com "Number".
 
 
@@ -76,3 +91,8 @@
 // console.log ("O primeiro numero é igual ao segundo?", Num1 === Num2) 
 // console.log ("O primeiro numero é divisível pelo segundo?", Num1 !== Num2) 
 // console.log ("O segundo numero é divisível pelo primeiro?", Num2 !== Num1 )
+
+// // O erro era transformar as Strings em Números
+
+
+

@@ -1,0 +1,29 @@
+h1{
+    color:gray;
+}
+
+body{
+    background-image: url(../template-loja/img/fundo.png);
+    color: white;
+    background-size: cover;
+    background-repeat: no-repeat;   
+    
+}
+a{
+    color:black;
+    background-color: white;
+    font-size: 18px;
+}
+.siga{
+    background-color:dodgerblue ;
+    display: inline;
+    border-radius: 5px;
+    font-style: italic;
+    font-size: 20px;
+}
+.Fundo{
+    backdrop-filter: none;
+    width: 100%;
+    /* height: 100%; */
+    
+}
