@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* text-align: center; */
+}
+body{
+    font-family: 'Fjalla One', sans-serif;
+}
+#topMenu{
+    display: flex;
+    background-color: #a29bfe;
+    margin: 0;
+
+}
+#topMenu li{
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+
+}
+#topMenu li:first-child{
+    margin-right: auto;
+}
+
+.section1{
+    display: flex;
+    height: 33vh;
+    background-color: #74b9ff;
+}
+.centralize{
+    margin:auto;
+    text-align: center;
+}
+.section2{
+    display: flex;
+    background-color: #0984e3;
+    /* width: 33vh; */
+    
+}
+.imagemProjeto{
+    width: 15vw;
+    height: 12vw;
+    padding-left: 15px;  
+    border-radius: 50%; 
+    
+}
+
+
+.section3{
+    display: flex;
+    background-color: #dfe6e9;
+    justify-content: center;
+    
+    
+}
+
+.section4{
+    display: flex;
+    background-color:#00cec9 ;
+    justify-content: right;
+}
+
+
+button:hover{
+    background-color:#dfe6e9;
+    
+}
+.botaoStyle{
+    border-radius: 5px;
+    background-color: #55efc4;
+    padding: 5px;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    
+    
+}
+.styleVoltar{
+    border-radius: 5px;
+    background-color:#0984e3;
+    padding:5px;
+    display:flex;
+    margin: 0 auto;
+    font-size: 20px;
+    
+    
+    
+}
+
+/* footer{
+    background-color: #dfe6e9;
+    padding: 30px;
+    color: black;
+} */
