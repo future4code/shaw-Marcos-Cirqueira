@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+}
+#divmae{
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: mediumvioletred;
+    align-items: center;
+    padding: 8px;
+    
+}
+.logo{
+    display: flex;   
+    
+}
+ img{
+    width: 30px;
+    height: 30px;
+    
+    
+    
+}
+main{
+    display: grid;
+    background-color:  #f2d0e0;
+   grid-template-columns: 200px 1fr;
+
+    
+}
+#ladoesquerdo{
+    background-color: #f2d0e0;
+    height: 80vh;
+    width: 100vw;
+    display: grid;
+       
+}
+.imgens{
+    width: 30px;
+    height: 100px;
+
+}
+#ladodireito{
+    background-color: white;
+    /* height: 800px;
+    width: 550px; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    
+}
+.bolos{
+    align-items: center;
+}
+
+
+
+footer{
+    background-color: mediumvioletred;
+    text-align: center;
+    padding: 20px;
+    
+    
+}
+
