@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    display: flex;
+    background-color: orange;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+main{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 20px;
+    column-gap: 20px;
+    margin: 20px;
+    height: 80vh;
+    
+}
+.card-video{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 2px 2px 5px orange;
+    text-align: center;
+    height: 100%;
+    
+    
+}
+a ,p{
+    text-decoration: none;
+    color: black;
+}
+
+.video{
+    
+    width: 100%;
+}
+
+
+
+
+footer{
+    background: gray;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* Mobile */
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px){
+    
+}
