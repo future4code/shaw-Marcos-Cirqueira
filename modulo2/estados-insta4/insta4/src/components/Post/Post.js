@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import {IconeComContador} from '../IconeComContador/IconeComContador'
+import { IconeComContador } from '../IconeComContador/IconeComContador'
 
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
 import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
-import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
+import { SecaoComentario } from '../SecaoComentario/SecaoComentario'
+import iconeSalvarBranco from '../../img/salvar.svg'
+import iconeSalvarPreto from '../../img/salvarPreto.svg'
 
 const PostContainer = styled.div`
   border: 1px solid gray;
@@ -26,7 +28,7 @@ const PostFooter = styled.div`
   display: flex;
   align-items: center;
   padding: 0 10px;
-  justify-content: space-between;
+  justify-content: flex-end;
 `
 
 const UserPhoto = styled.img`
@@ -45,30 +47,27 @@ class Post extends React.Component {
     curtido: false,
     numeroCurtidas: 0,
     comentando: false,
-    numeroComentarios: 0
+    numeroComentarios: 0,
+    salvar: false
   }
   // Aqui eu coloco toda ação que o coração vai fazer ao ser clicado
   onClickCurtida = () => {
-    this.setState({curtido:!this.state.curtido}) 
-        // this.state.curtido ? (this.state.numeroCurtidas - 1) : (this.state.numeroCurtidas + 1)
-        // Operador ternário. Simplifica o if e else.
-    let numCurtidas 
-    if(this.state.curtido){
+    this.setState({ curtido: !this.state.curtido })
+    // this.state.curtido ? (this.state.numeroCurtidas - 1) : (this.state.numeroCurtidas + 1)
+    // Operador ternário. Simplifica o if e else.
+    let numCurtidas
+    if (this.state.curtido) {
       numCurtidas = this.state.numeroCurtidas - 1
-    }else{
+    } else {
       numCurtidas = this.state.numeroCurtidas + 1
     }
 
     this.setState({
       curtido: !this.state.curtido,
-      numeroCurtidas:numCurtidas 
+      numeroCurtidas: numCurtidas
     })
     console.log('Curtiu!')
   }
-
-  // onClickNumeroCurtidas =()=>{
-  //   this.setState({numeroCurtidas:this.state.numeroCurtidas - 1})
-  // }
 
   onClickComentario = () => {
     this.setState({
@@ -80,32 +79,48 @@ class Post extends React.Component {
     this.setState({
       comentando: false,
       numeroComentarios: this.state.numeroComentarios + 1,
-      
+
     })
+  }
+
+  onClickSalvar = () => {
+    this.setState({
+      salvar: !this.state.salvar
+    })    
   }
 
   render() {
     let iconeCurtida
 
-    if(this.state.curtido) {
+    if (this.state.curtido) {
       iconeCurtida = iconeCoracaoPreto
     } else {
       iconeCurtida = iconeCoracaoBranco
     }
 
+    //<<<<<<<<<<< efeito do salvar>>>>>>>>>>>>
+    let iconeSalvar
+
+    if (this.state.salvar) {
+      iconeSalvar = iconeSalvarPreto
+     
+    } else {
+      iconeSalvar = iconeSalvarBranco     
+    }
+
     let componenteComentario
 
-    if(this.state.comentando) {
-      componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
+    if (this.state.comentando) {
+      componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario} />
     }
 
     return <PostContainer>
       <PostHeader>
-        <UserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
+        <UserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'} />
         <p>{this.props.nomeUsuario}</p>
       </PostHeader>
 
-      <PostPhoto src={this.props.fotoPost} alt={'Imagem do post'}/>
+      <PostPhoto src={this.props.fotoPost} alt={'Imagem do post'} />
 
       <PostFooter>
         <IconeComContador
@@ -115,10 +130,15 @@ class Post extends React.Component {
         />
 
         <IconeComContador
+          icone={iconeSalvar}
+          onClickIcone={this.onClickSalvar}
+        />
+        <IconeComContador
           icone={iconeComentario}
           onClickIcone={this.onClickComentario}
           valorContador={this.state.numeroComentarios}
         />
+
       </PostFooter>
       {componenteComentario}
     </PostContainer>
