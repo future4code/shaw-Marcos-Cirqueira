@@ -7,7 +7,8 @@ import MusicasAdd from "./components/TelaMusicasAdd/MusicasAdd";
 
 class App extends React.Component {
   state = {
-    telaAtual: "cadastro"
+    telaAtual: "cadastro",
+    idPlayList: ""
   }
 
   onClickTrocaPagina = () => {
@@ -15,9 +16,9 @@ class App extends React.Component {
       case "cadastro":
         return <TelaInicial irParaLista={this.irParaLista} irParaMusicas={this.irParaMusicas} />
       case "lista":
-        return <TelaPlayLists irParaAddPlay={this.irParaAddPlay} />
+        return <TelaPlayLists irParaAddPlay={this.irParaAddPlay} irParaMusicas={this.irParaMusicas} />
         case "musicas":
-          return <MusicasAdd irParaAddPlay={this.irParaAddPlay} />
+          return <MusicasAdd irParaAddPlay={this.irParaAddPlay} idPlayList={this.state.idPlayList} />
       default:
         return <div>Erro</div>
     }
@@ -31,8 +32,8 @@ class App extends React.Component {
     this.setState({ telaAtual: "lista" })
   }
 
-  irParaMusicas = () => {
-    this.setState({telaAtual: "musicas"})
+  irParaMusicas = (id) => {
+    this.setState({telaAtual: "musicas", idPlayList: id})
     
   }
 
