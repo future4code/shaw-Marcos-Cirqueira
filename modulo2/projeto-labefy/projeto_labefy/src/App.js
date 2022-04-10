@@ -18,7 +18,7 @@ class App extends React.Component {
       case "lista":
         return <TelaPlayLists irParaAddPlay={this.irParaAddPlay} irParaMusicas={this.irParaMusicas} />
         case "musicas":
-          return <MusicasAdd irParaAddPlay={this.irParaAddPlay} idPlayList={this.state.idPlayList} />
+          return <MusicasAdd irParaAddPlay={this.irParaAddPlay} idPlayList={this.state.idPlayList} voltarPagina={this.voltarPagina} />
       default:
         return <div>Erro</div>
     }
@@ -35,6 +35,10 @@ class App extends React.Component {
   irParaMusicas = (id) => {
     this.setState({telaAtual: "musicas", idPlayList: id})
     
+  }
+
+  voltarPagina = () => {
+    this.setState({telaAtual: "lista"})
   }
 
   render() {

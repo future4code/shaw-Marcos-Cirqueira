@@ -2,19 +2,16 @@ import React from "react";
 import axios from "axios";
 import styled from "styled-components"
 
+const Pai = styled.div`
+background-color: #333333;
+`
 const Container = styled.div`
 display: flex;
-justify-content: center;
-align-items: center;
-/* width: 100vw; */
-height: 100vh;
-`
-const DivBotao = styled.div`
-display: flex;
-justify-content: center;
 flex-direction: column;
-gap: 10px;
-margin-top: 10px;
+justify-content: center;
+width: 30vw;
+height: 100vh;
+margin: 0 auto;
 `
 const CardCadastro = styled.div`
 display: flex;
@@ -22,17 +19,32 @@ flex-direction: column;
 align-items: center;
 border: 1px solid black;
 border-radius: 10px;
-width: 30%;
-height: 50%;
+height: 40%;
+gap: 20px;
+background-color: #ffffff;
+
+button {   
+justify-content: center;
+gap: 20px;
+border-radius: 30px;
+color: #ffffff;
+background-color: #fa4c64;
+padding: 10px;
+border: none;
+cursor: pointer;
+
+}
 `
-const CardInput = styled.div`
+const Input = styled.input`
 display: flex;
 flex-direction: column;
-width: 100%;
-margin-top: 10px;
+width: 7vw;
 gap:10px;
-
+border-radius:10px;
+outline: none;
+padding:5px;
 `
+
 const headers = {
     headers: {
         Authorization: "marcos-cirqueira-shaw"
@@ -53,15 +65,13 @@ class TelaInicial extends React.Component {
 
         axios.post(url, body, headers)
             .then((res) => {
-                this.buscarIdMusica()
                 this.setState({ nome: "" })
+                alert("Usuário (a) cadastrado (a) com sucesso!");
             })
             .catch((err) => {
-                alert(err.response.data)
+                console.log(err.response);
             })
-    }
-
-
+    };
 
     onChangenome = (event) => {
         this.setState({ nome: event.target.value })
@@ -71,23 +81,21 @@ class TelaInicial extends React.Component {
     render() {
 
         return (
+            <Pai>
             <Container>
-                <CardCadastro>
-                    <h2>Playlists</h2>
-                    <CardInput>
-                        <input
-                            placeholder="Digite um nome a sua playlist"
-                            value={this.state.nome}
-                            onChange={this.onChangenome}
-                        />
-                    </CardInput>                    
-                    <DivBotao>
-                    <button onClick={this.criarPlaylists}>Criar</button>
-                        <button onClick={this.props.irParaLista}>Ir para minhas Playlists</button>                        
-                    </DivBotao>
-
-                </CardCadastro>
+            <CardCadastro>
+                <h2>CADASTRO</h2>
+                <Input
+                    placeholder="Digite um nome a sua playlist"
+                    value={this.state.nome}
+                    onChange={this.onChangenome}
+                />
+                <button onClick={this.criarPlaylists}>Criar</button>
+                <button onClick={this.props.irParaLista}>Ir para minhas Playlists</button>
+            </CardCadastro>
             </Container>
+            </Pai>
+
         );
     }
 

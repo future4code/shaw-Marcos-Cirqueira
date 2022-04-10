@@ -2,16 +2,59 @@ import React from "react";
 import axios from "axios";
 import styled from "styled-components"
 
+const Mae = styled.div`
+display: flex;
+flex-direction: column;
+gap: 10px;
+height: 100vh;
+overflow: auto;
+flex:none;
+flex-flow: column nowrap;
 
-const CardList = styled.div`
-border: 1px solid black;
+/* @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    display: flex;
+    flex-direction: column;
+} */
+
+>button {
+margin: 0 auto;
+margin-top: 10px;
+border-radius: 30px;
+color: #ffffff;
+background-color: #fa4c64;
 padding: 10px;
-margin: 10px;
-width: 25%;
+border: none;
+cursor: pointer;   
+}
+`
+const CardList = styled.div`
 display: flex;
 justify-content: space-between;
+border: 1px solid black;
+border-radius: 20px;
+background: #fa4c64;
+padding: 20px;
+width: 25%;
+margin: 0 auto;
 
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;    
+
+}
 `
+const StyleButton = styled.div`
+display: flex;
+gap: 5px;
+
+> button {    
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;   
+}
+`
+
 const headers = {
     headers: {
         Authorization: "marcos-cirqueira-shaw"
@@ -20,7 +63,7 @@ const headers = {
 
 class TelaPlayLists extends React.Component {
     state = {
-        Playlist: [],      
+        Playlist: [],
 
     }
 
@@ -55,20 +98,24 @@ class TelaPlayLists extends React.Component {
         }
 
     }
-   
+
     render() {
         const listaDePlayLists = this.state.Playlist.map((lista) => {
             return <CardList key={lista.id}>{lista.name}
-                <button onClick={() => this.deletarPlayList(lista.id)}>x</button>
-                <button onClick={() => this.props.irParaMusicas(lista.id)}>Info</button>
+                <StyleButton>
+                    <button onClick={() => this.deletarPlayList(lista.id)}>x</button>
+                    <button onClick={() => this.props.irParaMusicas(lista.id)}>Info</button>
+                </StyleButton>
             </CardList>
+
         })
-       
+
         return (
-            <div>
-                <button onClick={this.props.irParaAddPlay}>Home</button>
+            <Mae>
+                <button onClick={this.props.irParaAddPlay}>Home</button>                
                 {listaDePlayLists}                
-            </div>
+            </Mae>
+
 
         )
     }
@@ -77,15 +124,3 @@ class TelaPlayLists extends React.Component {
 export default TelaPlayLists;
 
 
-
-// buscarIdMusica = () => {
-//     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=${this.state.nome}`
-//     axios.get(url, headers)
-//         .then((res) => {
-//             // this.setState({buscarId: res.data.result.list.id})
-//             console.log(res.data);
-//         })
-//         .catch((err) => {
-//             console.log(err.response);
-//         })
-// }
