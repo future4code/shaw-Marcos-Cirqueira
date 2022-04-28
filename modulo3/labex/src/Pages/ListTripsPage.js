@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Url } from "../constants/Url";
-import { goToHomePage } from "../routes/coordinator";
+import { goToHomePage, goToApplication } from "../routes/coordinator";
 
 
 export const ListTripsPage = () => {
@@ -37,6 +37,7 @@ const render = listTrips.map((list) => {
             <h2>Lista de Viagens</h2>
 
             <div>
+                <button onClick={() => goToApplication(navigate)}>Inscrever-se</button>
                 <button onClick={() => goToHomePage(navigate)}>Voltar</button>                
                 {render}
             </div>

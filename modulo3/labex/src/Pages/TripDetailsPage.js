@@ -1,21 +1,8 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Url } from "../constants/Url";
+import { useProtectedPage } from "../hooks/useProtected";
 
-
-const useProtectedPage = () => {
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        const token = localStorage.getItem('token')
-
-        if (token === null) {
-            console.log('Não está logado');
-            navigate('/login')
-        }
-    }, [])
-}
 
 export const TripDetailsPage = () => {
     useProtectedPage()

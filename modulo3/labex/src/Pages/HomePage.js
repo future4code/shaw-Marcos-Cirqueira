@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Url } from "../constants/Url";
 import { useEffect } from "react";
 import axios from "axios";
-import { goToListTripsPage, goToLoginPage } from "../routes/coordinator";
+import { goToListTripsPage, goToAdmin } from "../routes/coordinator";
 
 
 
@@ -19,7 +19,7 @@ export const HomePage = () => {
 
             <div>
                 <button onClick={() => goToListTripsPage(navigate)}>Ver Viagens </button>
-                <button onClick={() => goToLoginPage(navigate)}> Área de Admin </button>
+                <button onClick={() => goToAdmin(navigate)}> Área de Admin </button>
             </div>
         </div>
     )
