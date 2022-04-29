@@ -1,27 +1,31 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Url } from "../constants/Url";
 import { useForm } from "../hooks/useForm";
 import { useProtectedPage } from "../hooks/useProtected";
-
-
+import { goToAdminPa } from "../routes/coordinator";
+import { useNavigate } from "react-router-dom";
+import { Container, Second } from "./StyleTodos/CreateTripStyle"
 
 
 export const CreateTripPage = () => {
     const { form, onChange } = useForm({ name: "", planet: "", date: "", description: "", durationInDays: "" })
     useProtectedPage()
+    const navigate = useNavigate()
+
     const token = localStorage.getItem('token')
 
     const createTrip = (event) => {
         event.preventDefault()
-        axios.post(`${Url}/trip`, form, {
+        axios.post(`${Url}/trips`, form, {
             headers: {
+
+                "Content-Type": "application/json",
                 auth: token
             }
         })
             .then((response) => {
                 console.log("Deu certo", response.data.trip);
-                // setName(response.data.trip)
             })
             .catch((err) => {
                 console.log("Deu erro", err);
@@ -30,54 +34,57 @@ export const CreateTripPage = () => {
     }
 
     return (
-        <div>
+        <Container>            
+            <Second>
             <h2>Criar Viagem</h2>
-            <form onSubmit={createTrip}>
-                <input
-                    name="name"
-                    placeholder="nome"
-                    type="text"
-                    value={form.name}
-                    onChange={onChange}
-                    required
-                />
-                <select name="planet">
-                    <option>Mercúrio</option>
-                    <option>Vênus</option>
-                    <option>Terra</option>
-                    <option>Marte</option>
-                    <option>Jupiter</option>
-                    <option>Saturno</option>
-                    <option>Urano</option>
-                    <option>Neturno</option>
-                    <option>Plutão</option>
-                </select>
-                <input
-                    name="date"
-                    placeholder="date"
-                    type="date"
-                    value={form.date}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    name="description"
-                    placeholder="Descrição"
-                    type="text"
-                    value={form.description}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    name="durationInDays"
-                    placeholder="Duração em dias"
-                    type="number"
-                    value={form.durationInDays}
-                    onChange={onChange}
-                    required
-                />
-                <button>Criar</button>
-            </form>
-        </div>
+                <form onSubmit={createTrip}>
+                    <input
+                        name="name"
+                        placeholder="Nome da viagem"
+                        type="text"
+                        value={form.name}
+                        onChange={onChange}
+                        required
+                    />
+                    <select name="planet" onChange={onChange}>
+                        <option value={"Mercúrio"}>Mercúrio</option>
+                        <option value={"Vênus"}>Vênus</option>
+                        <option value={"Terra"}>Terra</option>
+                        <option value={"Marte"}>Marte</option>
+                        <option value={"Jupiter"}>Jupiter</option>
+                        <option value={"Saturno"}>Saturno</option>
+                        <option value={"Urano"}>Urano</option>
+                        <option value={"Neturno"}>Neturno</option>
+                        <option value={"Plutão"}>Plutão</option>
+                    </select>
+                    <input
+                        name="date"
+                        placeholder="date"
+                        type="date"
+                        value={form.date}
+                        onChange={onChange}
+                        required
+                    />
+                    <input
+                        name="description"
+                        placeholder="Descrição"
+                        type="text"
+                        value={form.description}
+                        onChange={onChange}
+                        required
+                    />
+                    <input
+                        name="durationInDays"
+                        placeholder="Duração em dias"
+                        type="number"
+                        value={form.durationInDays}
+                        onChange={onChange}
+                        required
+                    />
+                    <button onClick={() => goToAdminPa(navigate)}> Voltar</button>
+                    <button>Criar</button>
+                </form>
+            </Second>
+        </Container>
     )
 }

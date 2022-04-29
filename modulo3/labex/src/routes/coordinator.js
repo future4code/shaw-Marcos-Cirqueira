@@ -20,7 +20,7 @@ export const goToBackHome = (navigate) => {
     navigate("/")
 }
 export const goToCreateTrip = (navigate) => {
-    navigate("/admin/trips/:id")
+    navigate("/admin/trips/create")
 }
 
 export const goToApplication = (navigate) => {
@@ -35,4 +35,13 @@ export const goToBackList = (navigate) => {
     navigate("/trips/list")
 }
 
+export const goToAdminPa = (navigate) => {
+    navigate("/admin/trips/list")
+}
 
+export const goToDetailsTrips = (navigate, id) => {
+    navigate(`/admin/trips/${id}`)
+}
+export const goToAdmin2= (navigate) => {
+    navigate("/admin/trips/list")
+}
