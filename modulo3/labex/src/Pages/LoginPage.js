@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Url } from "../constants/Url";
 import { goToBack } from "../routes/coordinator";
 import { useForm } from "../hooks/useForm";
+import {Container, Second, Botao} from "./StyleTodos/LoginStyle"
 
 
 export const LoginPage = () => {
@@ -24,7 +25,8 @@ export const LoginPage = () => {
     }
 
     return (
-        <div>
+        <Container>
+            <Second>
             <h2>Login</h2>
             <form onSubmit={onSubmitLogin}>
                 <input
@@ -44,9 +46,12 @@ export const LoginPage = () => {
                     onChange={onChange}
                     required
                 />
-                <button>Entrar</button>
+                <Botao>
                 <button onClick={() => goToBack(navigate)}>Voltar</button>
+                <button>Entrar</button>
+                </Botao>
             </form>
-        </div>
+            </Second>
+        </Container>
     )
 }

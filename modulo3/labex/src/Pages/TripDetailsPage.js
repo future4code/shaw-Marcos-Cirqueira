@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Url } from "../constants/Url";
 import { useProtectedPage } from "../hooks/useProtected";
 import { useParams, useNavigate } from "react-router-dom";
-import { goToAdmin2 } from "../routes/coordinator"
+import { goToAdmin2 } from "../routes/coordinator";
+import { Container, ClickButton, TripCard } from "./StyleTodos/TripDetailsStyle";
 
 
 export const TripDetailsPage = () => {
@@ -36,7 +37,7 @@ export const TripDetailsPage = () => {
         const body = {
             "approve": status
         }
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token')        
         axios.put(`${Url}/trips/${params.id}/candidates/${idCandidato}/decide`, body, {
             headers: {
                 auth: token
@@ -45,34 +46,37 @@ export const TripDetailsPage = () => {
             .then((response) => {
                 setAtualizar(!atualizar)
                 alert("Operação bem sucedida!")
-                console.log("Certo", response.data);
             })
             .catch((err) => {
                 console.log("Erro", err);
             })
     }
 
-    console.log("Trip", trip);
 
     return (
-        <div>
-            <h2> TripDetailsPage </h2>
-            <p>Nome: {trip.name}</p>
-            <p>Descrição: {trip.description} </p>
-            <p>Planeta: {trip.planet} </p>
-            <p>duração: {trip.durationInDays} </p>
-            <p>Data: {trip.date} </p>
-            <button onClick={() => goToAdmin2(nagivate)}>Voltar</button>
+        <Container>
+            <TripCard>
+                <h2> {trip.name} </h2>
+                <p>Nome: {trip.name}</p>
+                <p>Descrição: {trip.description} </p>
+                <p>Planeta: {trip.planet} </p>
+                <p>duração: {trip.durationInDays} </p>
+                <p>Data: {trip.date} </p>
+                <button onClick={() => goToAdmin2(nagivate)}>Voltar</button>
+            </TripCard>
+            <h2>Candidatos Pendentes</h2>
             {trip && trip.id && trip.candidates.length > 0 ? trip.candidates.map((candidat) => {
                 return (
-                    <div key={candidat.id}>
-                        <p>Nome: {candidat.name}</p>
+                    <div className="Candidates" key={candidat.id}>
+                        <p>Nome: {candidat.name} </p>
                         <p>Idade: {candidat.age} </p>
                         <p>Motivação: {candidat.applicationText} </p>
                         <p>Profissão: {candidat.profession} </p>
                         <p>País: {candidat.country} </p>
-                        <button onClick={() => approve(candidat.id, true)} >Aprovar</button>
-                        <button onClick={() => approve(candidat.id, false)}>Reprovar</button>
+                        <ClickButton>
+                            <button onClick={() => approve(candidat.id, true)} >Aprovar</button>
+                            <button onClick={() => approve(candidat.id, false)}>Reprovar</button>
+                        </ClickButton>
                     </div>
                 )
             }) :
@@ -88,6 +92,6 @@ export const TripDetailsPage = () => {
             }) :
                 <h2>Não há candidatos aprovados</h2>
             }
-        </div>
+        </Container>
     )
 }

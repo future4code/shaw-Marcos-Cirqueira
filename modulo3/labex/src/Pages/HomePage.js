@@ -14,7 +14,7 @@ export const HomePage = () => {
     return (
         <Main>
             <Second>
-                <h2>Home</h2>
+                <h2>LabeX</h2>
 
                 <div>
                     <button onClick={() => goToListTripsPage(navigate)}>Ver Viagens </button>

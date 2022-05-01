@@ -5,7 +5,7 @@ import { useForm } from "../hooks/useForm";
 import { useProtectedPage } from "../hooks/useProtected";
 import { goToAdminPa } from "../routes/coordinator";
 import { useNavigate } from "react-router-dom";
-import { Container, Second } from "./StyleTodos/CreateTripStyle"
+import { Container, Down } from "./StyleTodos/CreateTripStyle"
 
 
 export const CreateTripPage = () => {
@@ -34,10 +34,11 @@ export const CreateTripPage = () => {
     }
 
     return (
-        <Container>            
-            <Second>
-            <h2>Criar Viagem</h2>
+        <Container>          
+            
+            
                 <form onSubmit={createTrip}>
+                <h2>Criar Viagem</h2>
                     <input
                         name="name"
                         placeholder="Nome da viagem"
@@ -46,6 +47,7 @@ export const CreateTripPage = () => {
                         onChange={onChange}
                         required
                     />
+                    
                     <select name="planet" onChange={onChange}>
                         <option value={"Mercúrio"}>Mercúrio</option>
                         <option value={"Vênus"}>Vênus</option>
@@ -57,6 +59,7 @@ export const CreateTripPage = () => {
                         <option value={"Neturno"}>Neturno</option>
                         <option value={"Plutão"}>Plutão</option>
                     </select>
+                    
                     <input
                         name="date"
                         placeholder="date"
@@ -81,10 +84,12 @@ export const CreateTripPage = () => {
                         onChange={onChange}
                         required
                     />
+                    <Down>
                     <button onClick={() => goToAdminPa(navigate)}> Voltar</button>
                     <button>Criar</button>
+                    </Down>
                 </form>
-            </Second>
+            
         </Container>
     )
 }

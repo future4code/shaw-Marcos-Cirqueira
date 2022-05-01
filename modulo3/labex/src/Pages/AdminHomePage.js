@@ -4,7 +4,8 @@ import { goToBackHome, goToCreateTrip, goToDetailsTrips } from "../routes/coordi
 import { useProtectedPage } from "../hooks/useProtected";
 import { Url } from "../constants/Url";
 import axios from "axios";
-import { Container, Second } from "./StyleTodos/AdminStyle"
+import { Container, Second } from "./StyleTodos/AdminStyle";
+import { ImBin2 } from "react-icons/im";
 
 
 export const AdminHomePage = () => {
@@ -53,7 +54,7 @@ export const AdminHomePage = () => {
         return (
             <div className="Lista" key={list.id}>
                 <p onClick={() => goToDetailsTrips(navigate, list.id)}>Nome: {list.name}</p>
-                <button onClick={() => DelTrip(list.id)}>X</button>
+                <bin onClick={() => DelTrip(list.id)}> <ImBin2 /></bin>
             </div>
         )
     })

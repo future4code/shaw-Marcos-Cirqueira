@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Url } from "../constants/Url";
 import { goToHomePage, goToApplication } from "../routes/coordinator";
-import {Container} from "./StyleTodos/ListTripsStyle"
+import {Container, ClickButton} from "./StyleTodos/ListTripsStyle"
 
 export const ListTripsPage = () => {
     const [listTrips, setLisTrips] = useState([])
@@ -35,12 +35,10 @@ export const ListTripsPage = () => {
     return (
         <Container>
             <h2>Lista de Viagens</h2>
-
-            <div>
+            <ClickButton>
                 <button onClick={() => goToApplication(navigate)}>Inscrever-se</button>
-                <button onClick={() => goToHomePage(navigate)}>Voltar</button>
-                
-            </div>
+                <button onClick={() => goToHomePage(navigate)}>Voltar</button>                
+            </ClickButton>
             {render}
         </Container>
     )
