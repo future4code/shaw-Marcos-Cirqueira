@@ -3,18 +3,20 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../constants/baseURL';
 import { useForm } from '../../hooks/useForm';
+import { Container, Confirm } from '../RegistrationPage/RegistrationStyle'
 
 export const RegistrationPage = () => {
-  const { form, onChange } = useForm({ name: "", email: "", password: "" })
+  const { form, onChange } = useForm({ username: "", email: "", password: "" })
   const navigate = useNavigate()
 
 
 
   const onRegister = (event) => {
-    event.preventDefault()
-    console.log("Cadastrou", onRegister());
-    axios.post(`${baseURL}/users/signup`,)
+    event.preventDefault();
+
+    axios.post(`${baseURL}/users/signup`, form)
       .then((response) => {
+        console.log("Cadastrou");
         localStorage.setItem('token', response.data.token)
         navigate('/feed')
 
@@ -25,11 +27,11 @@ export const RegistrationPage = () => {
   }
 
   return (
-    <div>
-      <h2>RegistrationPage</h2>
+    <Container>
+      <h2>Olá, boas vindas ao LabEddit ;)</h2>
       <form onSubmit={onRegister}>
         <input
-          name="name"
+          name="username"
           placeholder="nome"
           type="name"
           value={form.name}
@@ -55,12 +57,21 @@ export const RegistrationPage = () => {
           pattern="[0-9a-zA-Z$*&@#]{8,}"
           required
         />
+        <p>Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade</p>
+        <Confirm>
+          <input
+            type="checkbox"
+            name="opcao"
+            value="op"
+          />
+          <p>Eu concordo em receber emails sobre coisas legais no Labeddit</p>
+        </Confirm>
 
         <button>Cadastrar</button>
         {/* <button onClick={() => goRegister(navigate)}>Criar uma conta!</button> */}
 
       </form>
-    </div>
+    </Container>
   )
 }
 
