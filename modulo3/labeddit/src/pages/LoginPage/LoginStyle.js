@@ -21,7 +21,6 @@ gap: 20px;
 margin-top: 80px;
 border-bottom: 2px solid #f9b050;
 
-
 input{
     
     width: 100%;

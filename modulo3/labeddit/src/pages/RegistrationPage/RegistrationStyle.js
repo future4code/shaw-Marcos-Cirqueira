@@ -6,21 +6,22 @@ display: flex;
 flex-direction: column;
 align-items: center;
 
-
-
+>h2{
+  margin-top: 50px;
+}
 form{
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 20px;
+gap: 15px;
 margin-top: 80px;
 
-
-
-input{
+>input{
     
-    width: 80%;
+    width: 90%;
     padding:10px 0;
+    padding-left:5px;
+    
 }
 
 button{
@@ -32,27 +33,30 @@ button{
     color:white;
     font-weight: bold;
     border: none;
-    background-image: linear-gradient(to right, #ff6787, #f9b050 );
-    
-
-}
-p{
-    /* flex-wrap: nowrap; */
-    /* text-align: center; */
-}
+    background-image: linear-gradient(to right, #ff6787, #f9b050 );    
 
 }
 
-
+}
 `
 
 export const Confirm = styled.div`
-/* display: flex; */
-/* justify-content: space-between; */
-/* flex-direction: column; */
+display: flex; 
+align-items: center;
+width: 100%;
 
 
 input{
-  
+  width: 10%;
+  margin-left: 10px;
 }
+`
+export const Phrase = styled.span`
+
+color:blue;
+
+`
+export const PhraseTwo = styled.p`
+
+margin-left: 20px;
 `

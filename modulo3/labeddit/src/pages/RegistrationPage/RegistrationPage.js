@@ -3,7 +3,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../constants/baseURL';
 import { useForm } from '../../hooks/useForm';
-import { Container, Confirm } from '../RegistrationPage/RegistrationStyle'
+import { Container, Confirm, Phrase, PhraseTwo } from '../RegistrationPage/RegistrationStyle';
+import { Header } from '../../components/Header/Header';
 
 export const RegistrationPage = () => {
   const { form, onChange } = useForm({ username: "", email: "", password: "" })
@@ -28,6 +29,7 @@ export const RegistrationPage = () => {
 
   return (
     <Container>
+      <Header />
       <h2>Olá, boas vindas ao LabEddit ;)</h2>
       <form onSubmit={onRegister}>
         <input
@@ -56,8 +58,8 @@ export const RegistrationPage = () => {
           onChange={onChange}
           pattern="[0-9a-zA-Z$*&@#]{8,}"
           required
-        />
-        <p>Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade</p>
+        />        
+        <PhraseTwo>Ao continuar, você concorda com o nosso <Phrase>Contrato de usuário</Phrase> e nossa <Phrase>Política de Privacidade</Phrase></PhraseTwo>
         <Confirm>
           <input
             type="checkbox"
