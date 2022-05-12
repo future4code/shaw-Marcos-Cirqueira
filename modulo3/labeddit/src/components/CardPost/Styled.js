@@ -10,3 +10,13 @@ margin: 10px 0;
 padding: 15px;
 
 `
+export const Comment = styled.div`
+font-size: 30px;
+cursor: pointer;
+`
+
+export const Vote = styled.div`
+font-size: 30px;
+
+
+`

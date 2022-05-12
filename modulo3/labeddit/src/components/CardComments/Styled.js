@@ -12,3 +12,6 @@ margin: 10px 0;
 padding: 15px;
 
 `
+export const Vote = styled.div`
+
+`

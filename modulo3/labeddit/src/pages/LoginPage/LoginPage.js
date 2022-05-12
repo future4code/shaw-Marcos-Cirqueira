@@ -15,8 +15,7 @@ export const LoginPage = () => {
         event.preventDefault();
 
         axios.post(`${baseURL}/users/login`, form)
-            .then((response) => {
-                console.log("Logou");
+            .then((response) => {                
                 localStorage.setItem('token', response.data.token)
                 navigate('/feed')
             })
