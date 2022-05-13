@@ -1,39 +1,23 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { baseURL } from '../../constants/baseURL';
 import { useProtectedPage } from '../../hooks/useProtected';
-import { goToPost } from '../../routes/coordinator';
 import { Header } from '../../components/Header/Header'
 import { CardPost } from '../../components/CardPost/CardPost';
 import { useForm } from '../../hooks/useForm';
 import useRequest from '../../hooks/useRequest';
+import { Container } from './FeedStyle';
+import { Loading } from '../../components/Loading/Loading';
 
 export const FeedPage = () => {
   const { form, onChange, cleanFields } = useForm({ title: "", body: ""})
-  // const [posts, setPosts] = useState([])
   const [update, setUpdate] = useState(false)
   useProtectedPage()
   const navigate = useNavigate()
   const params = useParams()
   const token = localStorage.getItem('token')
   const {listPosts} = useRequest(params.id, update)
-
-  // Get do POSTS >>>>>>>>>>>>>>>>>>>>>>>>>
-  // const getListPosts = () => {
-  //   axios.get(`${baseURL}/posts`, {
-  //     headers: {
-  //       Authorization: token
-  //     }
-  //   })
-  //     .then((response) => {
-  //       setPosts(response.data)
-  //     })
-  //     .catch((err) => {
-  //       console.log("Deu erro", err.response)
-  //     })
-  // }
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   const createPost = (event) => {
     event.preventDefault()
@@ -51,13 +35,9 @@ export const FeedPage = () => {
       })
   }
 
-  // useEffect(() =>{
-  //   getListPosts()    
-  // },[update])
   return (
-    <div>
-      <Header />
-      <h2>Feed</h2>
+    <Container>
+      <Header />      
       <form onSubmit={createPost}>
         <input
           name="title"
@@ -67,15 +47,17 @@ export const FeedPage = () => {
         />
         <textarea
           name="body"
+          placeholder='Escreva seu post...'
           value={form.body}
           onChange={onChange}
         />
         <button>Postar</button>
       </form>
-      {listPosts && listPosts.map((post) => {
+      {listPosts.length > 0 ?  listPosts.map((post) => {
         return <CardPost key={post.id} post={post} />
-      })}
-    </div>
+      })     :  <Loading />}
+    
+    </Container>
   )
 }
 

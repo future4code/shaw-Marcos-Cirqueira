@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../constants/baseURL';
 import { useForm } from '../../hooks/useForm';
@@ -6,21 +6,26 @@ import axios from 'axios';
 import { goRegister } from '../../routes/coordinator';
 import logo_labeddit from '../../assets/img/logo_labeddit.png';
 import {Container} from './LoginStyle'
+import { CircularProgress } from '@material-ui/core';
 
 export const LoginPage = () => {
     const { form, onChange, cleanFields } = useForm({ email: "", password: "" })
     const navigate = useNavigate()
+    const [isLoading, setLoading] = useState(false)
 
     const onSubmitLogin = (event) => {
         event.preventDefault();
-
+        setLoading(true)
         axios.post(`${baseURL}/users/login`, form)
             .then((response) => {                
                 localStorage.setItem('token', response.data.token)
                 navigate('/feed')
+                setLoading(false)
             })
             .catch((err) => {
+                setLoading(false)
                 alert("Senha incorreta!!!")
+                console.log(err.response);
             })
     }
 
@@ -45,8 +50,8 @@ export const LoginPage = () => {
                     onChange={onChange}
                     required
                 />
-
-                <button>Entrar</button>               
+                {isLoading ? <CircularProgress color={"inherit"} size={20}/>
+                : <button>Entrar</button> }               
 
             </form>
             <button className='bt' onClick={() => goRegister(navigate)}>Criar uma conta!</button>

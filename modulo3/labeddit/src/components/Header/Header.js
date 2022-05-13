@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import {Container, ButtonHeader} from '../Style';
+import { useNavigate, useParams } from 'react-router-dom';
+import {Container, ButtonHeader, Clear} from '../Header/Style';
 import logo_labenu from '../../assets/img/logo_labenu.png'
+import {toFeed} from '../../routes/coordinator';
+import { MdClear } from "react-icons/md";
 
 
-export const Header = () => {
+export const Header = (props) => {
     const token = localStorage.getItem('token')
-    const [rightButton, setRightButton] = useState(token ? "Logout" : "Login")
+    const [rightButton, setRightButton] = useState(token ? "Logout" : "Login")     
     const navigate = useNavigate()
+    const params = useParams()
 
     const logout = () => {
         window.localStorage.clear('token')
@@ -23,10 +26,15 @@ export const Header = () => {
         }else {
             navigate('/')
         }
+
+  
     }
     return (
-        <Container>
-            <img src= {logo_labenu} />
+        <Container> 
+            <Clear>
+            {!params.id ? null : <MdClear onClick={()=> toFeed(navigate)}  />} 
+            </Clear>          
+            <img src= {logo_labenu} />            
             <ButtonHeader onClick={rightButtonAction}>{rightButton}</ButtonHeader>
         </Container>
     )

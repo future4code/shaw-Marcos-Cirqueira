@@ -4,3 +4,6 @@ export const goRegister = (navigate) => {
 export const goToPost = (navigate, id) => {
     navigate(`/post/${id}`)
 }
+export const toFeed = (navigate) => {
+    navigate("/feed")
+}

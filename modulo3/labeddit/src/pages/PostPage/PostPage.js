@@ -7,10 +7,11 @@ import { CardComment } from '../../components/CardComments/CardComment';
 import { Header } from '../../components/Header/Header';
 import { useForm } from '../../hooks/useForm';
 import useRequest from '../../hooks/useRequest';
+import { Container, Comments } from './PostStyle';
 
 
 export const PostPage = () => {
-  const { form, onChange } = useForm({ body: "" })
+  const { form, onChange, cleanFields } = useForm({ body: "" })
   const [update, setUpdate] = useState(false)
   const navigate = useNavigate()
   const params = useParams()
@@ -27,6 +28,7 @@ export const PostPage = () => {
     })
       .then((response) => {
         setUpdate(!update)
+        cleanFields()
       })
       .catch((err) => {
         console.log("Deu erro", err.response)
@@ -38,9 +40,9 @@ export const PostPage = () => {
   })
 
   return (
-    <div>
+    <Container>
       <Header />
-      <h2>PostPage</h2>
+      {listPosts && listPosts.length > 0 ? <CardPost post={postagem[0]} /> : null}
       <form onSubmit={createComment}>
         <textarea
           name="body"
@@ -50,11 +52,12 @@ export const PostPage = () => {
         />
         <button>Responder</button>
       </form>
-      {listPosts && listPosts.length > 0 ? <CardPost post={postagem[0]} /> : null}
-      {comments && comments.map((comment) => {
-        return <CardComment key={comment.id} comment={comment} />
-      })}
-    </div>
+      <Comments>
+        {comments && comments.map((comment) => {
+          return <CardComment key={comment.id} comment={comment} />
+        })}
+      </Comments>
+    </Container>
   )
 }
 

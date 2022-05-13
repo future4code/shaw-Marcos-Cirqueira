@@ -6,12 +6,6 @@ import { baseURL } from '../../constants/baseURL';
 
 export default function GlobalState(props) {
 
-    
-  
- 
-
-
-
 
 
   return (

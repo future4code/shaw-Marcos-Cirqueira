@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, Comment, Vote } from '../CardPost/Styled'
+import React, {useState} from 'react'
+import { Container, Comment, NumberVote, Borda1, Borda2, Nome } from '../CardPost/Styled'
 import axios from 'axios'
 import { goToPost } from "../../routes/coordinator"
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,46 +9,53 @@ import { HiArrowCircleDown, HiArrowCircleUp } from "react-icons/hi";
 
 
 export const CardPost = (props) => {
-    const navigate = useNavigate()
-    const params = useParams()    
-    const token = localStorage.getItem('token')
+  const [update, setUpdate] = useState(false)
+  const navigate = useNavigate()
+  const params = useParams()
+  const token = localStorage.getItem('token')
 
 
-    const createPostVote = (status) =>{
-        const body = {
-          "direction": status
-        }
-        axios.post(`${baseURL}/posts/${props.post.id}/votes`, body, {
-          headers: {
-            Authorization: token
-          }
-        })
-        .then((response) => {
-            alert("Votou")
-        })
-        .catch((err) =>{
-            alert("Erro")
-        })
+  const createPostVote = (status) => {
+    const body = {
+      "direction": status
+    }
+    axios.post(`${baseURL}/posts/${props.post.id}/votes`, body, {
+      headers: {
+        Authorization: token
       }
-    return (
-        <Container>
-            <p> Enviado por: {props.post.username}</p>
-            <h2>{props.post.title}</h2>
-            <p>{props.post.body}</p>
-            {props.post.voteSum }            
-            <Vote>
-            <HiArrowCircleUp onClick={()=> createPostVote(1)}></HiArrowCircleUp>
-            <HiArrowCircleDown onClick={()=> createPostVote(-1)}></HiArrowCircleDown>
-            </Vote>
-            {!params.id ?
-                <Comment>
-                    <BiComment onClick={() => goToPost(navigate, props.post.id)}></BiComment>
-                    {props.post.commentCount === null ? <p>0</p> :
-                    <p>{props.post.commentCount}</p>}
-                </Comment>
-                : null}
+    })
+      .then((response) => {
+        setUpdate(!update)
+        alert("Votou")
+      })
+      .catch((err) => {
+        alert("Erro")
+      })
+  }
+  return (
+    <Container>
+      <Nome>
+      <p> Enviado por:{props.post.username} </p> 
+      </Nome>           
+      <p>{props.post.title}</p>      
+      {!params.id ?
+        <Comment>
+          <Borda1>
+            <HiArrowCircleUp onClick={() => createPostVote(1)}></HiArrowCircleUp>
+            <NumberVote>
+              {props.post.voteSum}
+            </NumberVote>
+            <HiArrowCircleDown onClick={() => createPostVote(-1)}></HiArrowCircleDown>
+          </Borda1>
+          <Borda2>            
+              <BiComment onClick={() => goToPost(navigate, props.post.id)} />            
+            {props.post.commentCount === null ? <p>0</p> :
+              <p>{props.post.commentCount}</p>}
+          </Borda2>
 
-        </Container>
-    )
+        </Comment>
+        : null}
+    </Container>
+  )
 }
 

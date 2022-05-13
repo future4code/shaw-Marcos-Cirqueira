@@ -22,17 +22,22 @@ const useRequest = (id, update) => {
     };
 
     const getComments = () => {
-        axios.get(`${baseURL}/posts/${id}/comments`, {
-            headers: {
-                Authorization: token
-            }
-        })
-            .then((response) => {
-                setComments(response.data)
+        if(id !== ''){
+            axios.get(`${baseURL}/posts/${id}/comments`, {
+                headers: {
+                    Authorization: token
+                }
             })
-            .catch((err) => {
-                console.log("Deu erro")
-            })
+                .then((response) => {
+                    setComments(response.data)
+                    
+                })
+                .catch((err) => {
+                    console.log(err.response)
+                })
+        }        
+      
+        
     }
 
     useEffect(() => {
