@@ -3,8 +3,7 @@ import { Request, Response } from "express"
 
 export const getAll = async (req: Request, res: Response) => {
     try {
-        const name = req.query.name
-        // const type = req.query.type
+        const name = req.query.name       
         let order = req.query.order
         let filter = req.query.filter
         let page = Number(req.query.page)
@@ -35,7 +34,8 @@ export const getAll = async (req: Request, res: Response) => {
         }
 
         const result = await connection("aula48_exercicio")
-            .where(`${type}`, "like", `%${name}%`)
+            .where("name", "like", `%${name}%`)
+            .orWhere("type", "like", `%${type}%`)
             .orderBy(filter, order)
             .limit(size)
             .offset(offset)
