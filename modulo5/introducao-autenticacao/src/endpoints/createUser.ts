@@ -3,6 +3,7 @@ import { UserDatabase } from "../data/UserDatabase";
 import { User } from "../types";
 import { Generator } from "../services/Generator"
 import { Authenticator } from "../services/Authenticator";
+import { HashManage } from "../services/HashManage";
 
 
 export const createUser = async (
@@ -19,19 +20,24 @@ export const createUser = async (
          throw new Error("Invalid password");
       }
 
-      const { email, password } = req.body
+      const { email, password, role } = req.body
+
       const generate = new Generator()
       const id: string = generate.generateId()
 
+      const hashManage1 = new HashManage()
+      const hash = await hashManage1.hash(password)
+
       const userDB = new UserDatabase()
 
-      const newUser = new User(id, email, password)
+      const newUser = new User(id, email, hash, role)
 
       await userDB.create (newUser)
       
       const authenticator = new Authenticator()
       const token = authenticator.generateToken({
-         id
+         id,
+         role
       })
 
       res.status(201).send({token})
