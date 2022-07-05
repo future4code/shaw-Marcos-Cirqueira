@@ -85,7 +85,7 @@ class UserBussines {
       
    }
 
-   async deleteUser(id: string, token: string){
+   async deleteUser(token: string, id: string){
       if(!token){
          throw new Error("Preencha o token!")
       }
