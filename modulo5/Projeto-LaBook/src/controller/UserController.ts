@@ -1,4 +1,4 @@
- import { Request, Response } from "express"
+import { Request, Response } from "express"
 import UserBusiness from "../business/UserBusiness"
 import { LoginInputDTO } from "../types/loginInputDTO"
 import { SignupInputDTO } from "../types/signupInputDTO"

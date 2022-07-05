@@ -57,7 +57,7 @@ export default class UserBusiness {
             throw new Error("Usuário não encontrado")
          }
 
-         const hashedPassword = await this.hashManager.hash(password)
+         const hashedPassword = await this.hashManager.compare(password, user.password)
          if (!hashedPassword) {
             throw new Error("Senha incorreta")
          }
