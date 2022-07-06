@@ -38,6 +38,7 @@ app.post('/user/login', userController.login)
 
 // Criar Post
 app.post('/post/create', postController.createPost)
+app.get('/post/:id', postController.getPostById)
 
 
 console.log("Bora lá!!!");

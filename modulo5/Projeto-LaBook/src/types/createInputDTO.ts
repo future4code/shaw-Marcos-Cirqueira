@@ -4,7 +4,8 @@ enum POST_TYPES {
 }
 
 export type CreateInputDTO = {
-    photo: string,
-    description: string,
-    type: POST_TYPES    
+    photo: string
+    description: string
+    type: POST_TYPES
+    created_at: string
 }

@@ -18,13 +18,13 @@ export default class UserBusiness {
 
         const { name, email, password } = input
         if (!name || !email || !password) {
-            throw new Error("Campos inválidos")
+            throw new Error("Invalid fields")
 
         }
 
         const registeredUser = await this.userData.findByEmail(email)
         if (registeredUser) {
-            throw new Error("Email já cadastrado")
+            throw new Error("E-mail already registered")
         }
 
         const id = this.idGenerator.generateId()
@@ -48,18 +48,18 @@ export default class UserBusiness {
 
         const { email, password } = login
         if (!email || !password) {
-            throw new Error("'email' e 'senha' são obrigatórios")
+            throw new Error("'email' and 'password' are required")
         }
 
         const user = await this.userData.findByEmail(email)
 
         if (!user) {
-            throw new Error("Usuário não encontrado")
+            throw new Error("User not found")
          }
 
          const hashedPassword = await this.hashManager.compare(password, user.password)
          if (!hashedPassword) {
-            throw new Error("Senha incorreta")
+            throw new Error("Incorrect password")
          }
 
          const token = this.authenticator.generateToken({ id: user.id })

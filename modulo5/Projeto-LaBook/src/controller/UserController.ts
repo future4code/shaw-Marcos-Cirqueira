@@ -20,7 +20,7 @@ import { SignupInputDTO } from "../types/signupInputDTO"
             }
             const token = await this.userBusiness.signup(input)
 
-            res.status(201).send({message: "Usuário cadastrado com sucesso", token})
+            res.status(201).send({message: "User registered successfully", token})
 
         }catch (error) {
             if (error instanceof Error) {
@@ -38,7 +38,7 @@ import { SignupInputDTO } from "../types/signupInputDTO"
 
             const token = await this.userBusiness.login(login)
 
-            res.status(201).send({message: "Usuário logado com sucesso", token})
+            res.status(201).send({message: "User logged in successfully", token})
 
         }catch (error) {
             if (error instanceof Error) {

@@ -6,7 +6,7 @@ import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { CreateInputDTO } from "../types/createInputDTO";
 
-export default class PostBusiness{
+export default class PostBusiness {
     constructor(
         private postData: PostData,
         private idGenerator: IdGenerator,
@@ -15,20 +15,22 @@ export default class PostBusiness{
 
     createPost = async (input: CreateInputDTO, token: string) => {
 
-         const {photo, description, type } = input
+        const { photo, description, type, created_at } = input
 
-         if (!photo || !description || !type ) {
-            throw new Error("Campos inválidos")
+        if (!photo || !description || !type || !created_at) {
+            throw new Error("Invalid fields")
+        }
+
+        if (type !== "event" && type !== "normal") {
+            throw new Error("Type can only be 'NORMAL' or 'EVENT'.");
         }
 
         const id = this.idGenerator.generateId()
 
-        const createdAt = moment().format("YYYY-MM-DD")
-
         const tokenData = this.authenticator.getTokenData(token)
 
         if (!tokenData) {
-            throw new Error("Token não enviado")
+            throw new Error("token not sent")
         }
 
         const post = new Post(
@@ -36,13 +38,29 @@ export default class PostBusiness{
             photo,
             description,
             type,
-            createdAt,
+            created_at,
             tokenData.id
-                      
+
         )
         await this.postData.insert(post)
 
+        return "success"
+    }
 
-        return token
+    getPostById = async (id: string, token: string) => {
+        // valida o postId
+        const PostId = id
+        if (!PostId) {
+            throw new Error("invalid id!")
+        }
+        // valida token
+        if (!token) {
+            throw new Error("Unauthorized Token!")
+
+        }
+        // solicta ao banco
+        const response = await this.postData.getPostById(PostId)
+
+        return response
     }
 }

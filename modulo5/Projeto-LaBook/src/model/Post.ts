@@ -5,11 +5,11 @@ enum POST_TYPES {
 
 export default class Post{
     constructor(
-        private id:string,
-        private photo:string,
-        private description:string,
-        private type: POST_TYPES,
-        private createdAt:string,
-        private authorId: string
+        public id:string,
+        public photo:string,
+        public description:string,
+        public type: POST_TYPES,
+        public created_at:string,
+        public author_id: string
     ){}
 }
