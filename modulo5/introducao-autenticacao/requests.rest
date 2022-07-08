@@ -1,0 +1,27 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{      
+   "email": "vitin@oscorp.com" ,
+   "password": "pirulito",
+   "role": "ADMIN"
+}
+###
+# @name login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{     
+   "email": "renan@oscorp.com",
+   "password": "falamacho"   
+}
+
+###
+@token = {{login.response.body.token}}
+GET http://localhost:3003/user/profile
+Authorization:{{token}}
+
+
+
+# "email": "renan@oscorp.com",
+#    "password": "falamacho"
