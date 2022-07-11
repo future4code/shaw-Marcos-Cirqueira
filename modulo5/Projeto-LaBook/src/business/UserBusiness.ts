@@ -111,12 +111,12 @@ export default class UserBusiness {
         }
 
         const UserId: string = tokenData.id
-        // impossibilitar amizade consigo mesmo 
+        // impossibilitar desfazer amizade consigo mesmo 
         if (UserId === id_follow) {
             throw new Error("Are you serious? Trying to remove yourself?");
         }
 
-        await this.userData.removeFollow(token, id_follow)
+        await this.userData.removeFollow(id_follow, UserId)
 
         return "You have lost a friend!"
 

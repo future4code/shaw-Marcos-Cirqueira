@@ -41,7 +41,7 @@ export default class UserData extends BaseDatabase {
         try {
 
             await this.connection(this.TABLE_FRIEND)
-                .insert({ id_follow: id_follow, id_followed: id_followed })
+                .insert({ id_follow: id_followed, id_followed: id_follow })
 
         } catch (error) {
             if (error instanceof Error) {
