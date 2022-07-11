@@ -40,6 +40,10 @@ app.post('/user/login', userController.login)
 app.post('/post/create', postController.createPost)
 app.get('/post/:id', postController.getPostById)
 
+// Seguir usuário
+app.post('/user/friendship', userController.followUser)
+app.delete('/user/unfriend', userController.removeFollow)
+
 
 console.log("Bora lá!!!");
 

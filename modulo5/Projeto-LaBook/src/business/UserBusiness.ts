@@ -3,6 +3,7 @@ import User from "../model/User";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
+import { inputFriends } from "../types/inputFriends";
 import { LoginInputDTO } from "../types/loginInputDTO";
 import { SignupInputDTO } from "../types/signupInputDTO";
 
@@ -55,15 +56,69 @@ export default class UserBusiness {
 
         if (!user) {
             throw new Error("User not found")
-         }
+        }
 
-         const hashedPassword = await this.hashManager.compare(password, user.password)
-         if (!hashedPassword) {
+        const hashedPassword = await this.hashManager.compare(password, user.password)
+        if (!hashedPassword) {
             throw new Error("Incorrect password")
-         }
+        }
 
-         const token = this.authenticator.generateToken({ id: user.id })
+        const token = this.authenticator.generateToken({ id: user.id })
 
-         return token
+        return token
+    }
+
+    followUser = async (id_follow: string, token: string) => {
+
+        if (!token) {
+            throw new Error("You need to sign in to add a new friend.")
+        }
+
+        if (!id_follow) {
+            throw new Error("You need to send the user's id to execute this action.")
+        }
+
+        const tokenData = this.authenticator.getTokenData(token)
+
+        const verifyId_follow: string = tokenData.id
+        // impossibilitar amizade consigo mesmo 
+        if (verifyId_follow === id_follow) {
+            throw new Error("Are you serious? Trying to be friend with yourself?");
+        }
+
+        if (!tokenData) {
+            throw new Error("token not sent")
+        }
+
+        await this.userData.followUserInsert(verifyId_follow, id_follow)
+
+        return "You've got a new friend!"
+    }
+
+    removeFollow = async (token: string, id_follow: string) => {
+        if (!token) {
+            throw new Error("You need to sign in to add a new friend.")
+        }
+
+        if (!id_follow) {
+            throw new Error("You need to send the user's id to execute this action.")
+        }
+
+        const tokenData = this.authenticator.getTokenData(token)
+
+        if (!tokenData) {
+            throw new Error("token not sent")
+        }
+
+        const UserId: string = tokenData.id
+        // impossibilitar amizade consigo mesmo 
+        if (UserId === id_follow) {
+            throw new Error("Are you serious? Trying to remove yourself?");
+        }
+
+        await this.userData.removeFollow(token, id_follow)
+
+        return "You have lost a friend!"
+
     }
 }

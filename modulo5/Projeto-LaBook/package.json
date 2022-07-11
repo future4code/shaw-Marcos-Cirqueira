@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node --inspect ./build/src/index.js",
+    "start": "node ./build/controller/index.js",
     "dev": "clear && ts-node-dev ./src/controller/index.ts",
-    "build": "clear && echo \"Transpiling files...\" && tsc && echo \"Done!\" ",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "tsc"
+  },
+  "engines": {
+    "node": "v16.15.1"
   },
   "keywords": [],
   "author": "",
