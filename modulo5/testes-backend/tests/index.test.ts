@@ -14,36 +14,39 @@ const userBussinesMock = new UserBusiness(
 describe("getUserById", () => {
 	// (a)
    test("Should catch error when id is not registered", async () => {
-    expect.assertions(2)
 
     try {
       await userBussinesMock.getUserById("abc")
-    } catch (error) {
+    } catch (error:any) {
       expect(error.statusCode).toBe(404)
       expect(error.message).toBe("User not found")
+    }finally{
+      expect.assertions(2)
     }
   })
     
 	// (b)
   test("Should return respective user when id is registered", async () => {
-    // expect.assertions(2)
     
     try {
       const getUserById = jest.fn(
         (id: string) => userBussinesMock.getUserById(id)
       )
         
-      const result = await getUserById("id_mock_admin")
-
-      expect(getUserById).toHaveBeenCalledWith("id_mock_admin")
+      const result = await getUserById("86b9506c-a99b-4af5-b91b-b0e554600a88")
+        console.log("Resultado", result);
+        
+      expect(getUserById).toHaveBeenCalledWith("86b9506c-a99b-4af5-b91b-b0e554600a88")
       expect(result).toEqual({
-        id: "id_mock_admin",
-        name: "astrodev",
-        email: "astrodev@gmail.com",
+        id: "86b9506c-a99b-4af5-b91b-b0e554600a88",
+        name: "Laura",
+        email: "laura_lab@gmail.com",
         role: "ADMIN",
       })
-    } catch (error) {
+    } catch (error:any) {
       console.log(error.message)
+    }finally{
+    // expect.assertions(2)
     }
   })
 

@@ -28,7 +28,7 @@ export class userData extends BaseDataBase {
             const result = await BaseDataBase.connection(this.TABLE_NAME)
                 .select()
                 
-            const usermodel = result.map((model)=>{
+            const usermodel = result.map((model:any)=>{
                 return User.UserModel(model)
             })
 
