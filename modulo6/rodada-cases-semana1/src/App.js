@@ -1,12 +1,13 @@
 import React from "react";
-import { HomePage } from "./pages/HomePage";
+import {BrowserRouter } from "react-router-dom";
+import {Router} from "./routes/Router"
 
-function App() {
+
+const App = () => {
   return (
-   <div>
-    Lotérica
-    <HomePage />
-   </div>
+    <div>      
+        <Router />
+    </div>
   );
 }
 
