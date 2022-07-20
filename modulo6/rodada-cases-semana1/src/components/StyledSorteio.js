@@ -7,4 +7,10 @@ p{
         padding: 15px;
         border-radius: 50px;
     }
+
+    @media screen and (min-device-width:320px) and (max-device-width:375px){
+        p{
+        padding: 10px;
+        }
+    }
 ` 
