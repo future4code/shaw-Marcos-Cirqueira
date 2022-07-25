@@ -1,0 +1,20 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name": "Alek",
+    "email": "lek_bolador@hotmail.com",
+    "password": "bolaumback",
+    "role": "NORMAL"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "renan@hotmail.com",
+    "password": "paulista"
+}
+
+
