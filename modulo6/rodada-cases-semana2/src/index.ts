@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 import {AddressInfo} from "net";
 import express from "express";
-import { userRouter } from "./routes/userRouter";
+import { pokeRouter } from "./routes/pokeRouter";
 
 dotenv.config();
 const app = express();
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 
-app.use("/user", userRouter);
+app.use("/poke", pokeRouter);
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
