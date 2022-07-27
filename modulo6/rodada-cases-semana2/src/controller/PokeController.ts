@@ -15,11 +15,9 @@ export class PokeController {
 
             res.status(201).send(result)
 
-        } catch (error) {
-            if (error instanceof Error) {
-                return res.status(400).send(error.message)
-            }
-            res.status(500).send("Erro no getListings")
+        } catch (error: any) {
+            const { code, message } = error
+            res.status(code || 400).send({ message });
         }
 
         await BaseDatabase.destroyConnection();
@@ -35,34 +33,30 @@ export class PokeController {
             res.status(201).send(result)
 
 
-        } catch (error) {
-            if (error instanceof Error) {
-                return res.status(400).send(error.message)
-            }
-            res.status(500).send("Erro no searchPokemon")
+        } catch (error: any) {
+            const { code, message } = error
+            res.status(code || 400).send({ message });
         }
 
         await BaseDatabase.destroyConnection();
     }
 
     getPokePage = async (req: Request, res: Response) => {
-        try{
-            const pagePoke = Number (req.query.page) 
-            
+        try {
+            const pagePoke = Number(req.query.page)
+
             const result = await this.userBusiness.getPokePage(pagePoke)
 
             res.status(200).send(result)
 
-        }catch (error) {
-            if (error instanceof Error) {
-                return res.status(400).send(error.message)
-            }
-            res.status(500).send("Erro no getPokePage")
+        } catch (error: any) {
+            const { code, message } = error
+            res.status(code || 400).send({ message });
         }
     }
 
     getFilterByOrder = async (req: Request, res: Response) => {
-        try{
+        try {
 
             let order = req.query.order as string
             let filter = req.query.filter as string
@@ -71,11 +65,9 @@ export class PokeController {
 
             res.status(200).send(result)
 
-        }catch (error) {
-            if (error instanceof Error) {
-                return res.status(400).send(error.message)
-            }
-            res.status(500).send("Erro no getFilterByOrder")
+        } catch (error: any) {
+            const { code, message } = error
+            res.status(code || 400).send({ message });
         }
     }
 

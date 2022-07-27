@@ -1,27 +1,30 @@
 import { PokeDatabase } from "../data/PokeDatabase";
-import { HashManager } from "../services/HashManager";
-import { Authenticator } from "../services/Authenticator";
-import { IdGenerator } from "../services/IdGenerator";
 import { BaseError } from "../error/BaseError";
 
 export class PokeBusiness {
     constructor(
         private pokerData: PokeDatabase,
-        private idGenerator: IdGenerator,
-        private hashManager: HashManager,
-        private authenticator: Authenticator,
     ) { }
 
     getListings = async () => {
         return await this.pokerData.ContainListings()
     }
 
-    searchPokemon = async (Name:string) => {
+    searchPokemon = async (Name: string) => {
+
+        if (!Name) {
+            throw new BaseError(422, "Missing input")
+        }
+
         return await this.pokerData.Search(Name)
     }
 
     getPokePage = async (pagePoke: number) => {
 
+        if (pagePoke > 5) {
+            throw new BaseError(422, "page limit up to 5")
+
+        }
         let page = pagePoke
 
         if (page < 1 || isNaN(page)) {
@@ -37,7 +40,7 @@ export class PokeBusiness {
         return result
     }
 
-    getFilterByOrder = async (order:string , filter:string) => {
+    getFilterByOrder = async (order: string, filter: string) => {
 
         if (order !== 'asc' && order !== 'desc') {
             order = 'asc'
