@@ -44,7 +44,6 @@ const Graphic = () => {
                 height="300px"
                 data={[["Name", "Participation"],                
                 ...database,
-                ["No Participation", 100 - total]
                 ]}
                 options={options}
             />
