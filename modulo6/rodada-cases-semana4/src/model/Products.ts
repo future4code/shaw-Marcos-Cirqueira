@@ -15,5 +15,5 @@ export class amaro_tags {
 
 export interface inputCreateProductDTO {
     name: string,
-    tags: string
+    tags: string[]
 }
